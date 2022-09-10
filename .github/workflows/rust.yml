@@ -42,10 +42,10 @@ jobs:
     - name: Checkout sources
       uses: actions/checkout@v2
     - name: Install deps
-      run: sudo apt-get update && sudo apt-get install -y libxkbcommon-dev libwayland-dev wayland-protocols libpango1.0-dev libdbus-1-dev
+      run: sudo apt-get update && sudo apt-get install -y libxkbcommon-dev libwayland-dev wayland-protocols libpango1.0-dev libdbus-1-dev libegl1-mesa-dev
     - name: Build
       run: |
         git clone https://github.com/fltk/fltk 
         cd fltk
-        cmake -Bbin -DOPTION_USE_WAYLAND=ON -DOPTION_WAYLAND_ONLY=ON -DFLTK_BUILD_TEST=OFF
+        cmake -Bbin -DOPTION_USE_WAYLAND=ON -DOPTION_WAYLAND_ONLY=ON -DOPTION_ALLOW_GTK_PLUGIN=OFF -DFLTK_BUILD_TEST=OFF 
         cmake --build bin --parallel
