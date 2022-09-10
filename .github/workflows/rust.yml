@@ -30,6 +30,6 @@ jobs:
     - name: Checkout sources
       uses: actions/checkout@v2
     - name: Install deps
-      run: sudo apt-get update && sudo apt-get install -y libxkbcommon-dev libwayland-dev wayland-protocols libpango1.0-dev libdbus-1-dev libxcursor libxfixes libxinerama
+      run: sudo apt-get update && sudo apt-get install -y libxkbcommon-dev libwayland-dev wayland-protocols libpango1.0-dev libdbus-1-dev libxcursor1 libxfixes3 libxinerama1
     - name: Build
       run: CFLTK_WAYLAND_ONLY=1 cargo check --verbose
