@@ -18,34 +18,7 @@ jobs:
     - name: Checkout sources
       uses: actions/checkout@v2
     - name: Install deps
-      run: sudo apt-get update && sudo apt-get install -y libx11-dev libxext-dev libxft-dev libxinerama-dev libxcursor-dev libxrender-dev libxfixes-dev libxkbcommon-dev libwayland-dev wayland-protocols libpango1.0-dev libdbus-1-dev
+      run: sudo apt-get update && sudo apt-get install -y libfltk1.3-dev
     - name: Build
       run: cargo check --verbose
   
-  build_pure:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout sources
-      uses: actions/checkout@v2
-    - name: Install deps
-      run: sudo apt-get update && sudo apt-get install -y libxkbcommon-dev libwayland-dev wayland-protocols libpango1.0-dev libdbus-1-dev
-    - name: Build
-      run: CFLTK_WAYLAND_ONLY=1 cargo check --verbose
-      
-  build_pure_cxx:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout sources
-      uses: actions/checkout@v2
-    - name: Install deps
-      run: sudo apt-get update && sudo apt-get install -y libxkbcommon-dev libwayland-dev wayland-protocols libpango1.0-dev libdbus-1-dev libegl1-mesa-dev libglu1-mesa-dev
-    - name: Build
-      run: |
-        git clone https://github.com/fltk/fltk 
-        cd fltk
-        cmake -Bbin -DOPTION_USE_WAYLAND=ON -DOPTION_WAYLAND_ONLY=ON -DOPTION_ALLOW_GTK_PLUGIN=OFF -DFLTK_BUILD_TEST=OFF 
-        cmake --build bin --parallel
