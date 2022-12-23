@@ -18,4 +18,4 @@ jobs:
         run: |
           git clone https://github.com/fltk-rs/fltk-rs --recurse-submodules
           cd fltk-rs
-          C_INCLUDE_PATH=/usr/local/include CPLUS_INCLUDE_PATH=/usr/local/include cargo build --example paint
+          C_INCLUDE_PATH=/usr/local/include CPLUS_INCLUDE_PATH=/usr/local/include cargo build --example paint --features=no-pango
