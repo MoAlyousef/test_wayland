@@ -14,8 +14,7 @@ jobs:
       with:
         usesh: true
         prepare: |
-          pkg install -y gedit cmake g++
-
+          pkg install -y gedit cmake clang
         run: |
           git clone https://github.com/fltk-rs/fltk-rs --recurse-submodules
           cd fltk-rs
